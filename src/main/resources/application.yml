@@ -1,0 +1,48 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: google
+# Spring Security configuration
+security:
+  oauth2:
+    client:
+      clientId: #    <here is your client ID>
+      clientSecret: #     <here is your client secret>
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope:
+        - openid
+        - email
+        - profile
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+# Server configuration
+server:
+  port: 8180
+
+---
+
+
+spring:
+  profiles:
+    active: facebook
+
+security:
+  oauth2:
+    client:
+      client-id: #       <here is your client ID>
+      client-secret: #     <here is your client secret>
+      access-token-uri: https://graph.facebook.com/oauth/access-token
+      user-authorization-uri: https://www.facebook.com/dialog/oauth
+      token-name: oauth_token
+      authentication-scheme: query
+      client-authentication-scheme: form
+    resource:
+      user-info-uri: https://www.facebook.com/user
+
+server:
+  port: 8181
+
+
